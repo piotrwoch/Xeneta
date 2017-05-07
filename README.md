@@ -11,15 +11,15 @@ The WochApp's prerequisites:
 API endpoints:
 (send a request with no parameters to see a description of available parameters)
 
-"/avgprice"      - checking the avg price between orig & dest ports, or ports in the same slug/region
+"/avgprice"      - (GET) checking the avg price between orig & dest ports, or ports in the same slug/region
 
-"/upload_price"  - upload an individual price
+"/upload_price"  - (POST) upload an individual price
 
-"/upload"        - batch upload form
+"/upload"        - (GET) batch upload form
 
 Open questions:
 
 1) Re: "GET" reqs, pt.4: It was not specified if "following the
-   region hierarchy "up" " should be by the origin or dest
+   region hierarchy "up" " should be by the origin or dest or both (assumed by both)
    
-2) Re: "POST" reqs, pt.1: date_from, date_to are not relevant for uploading a single price 
+2) Re: "POST" reqs, pt.1: date_from, date_to are not relevant for uploading a single price (assumed only a single date param is required) 
