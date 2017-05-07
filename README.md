@@ -1,7 +1,7 @@
 # Xeneta
 Home Assignment
 
-1. The WochApp's prerequisites:
+I. The WochApp's prerequisites:
 
 1) pip install sortedcontainers
 2) pip install requests
@@ -12,7 +12,7 @@ Home Assignment
 
 Please set up hard-coded DB connection details in the WochApp.py.
 
-2. API endpoints:
+II. API endpoints:
 
 (send a request with no parameters to see a description of available parameters)
 
@@ -22,7 +22,7 @@ Please set up hard-coded DB connection details in the WochApp.py.
 
 "/upload"        - (GET) batch upload form
 
-3. Open questions:
+III. Open questions:
 
 1) Re: "GET" reqs, pt.4: It was not specified if "following the
    region hierarchy "up" " should be by the origin or dest or both (assumed by both)
