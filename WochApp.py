@@ -86,7 +86,7 @@ def doAvgPriceQuery( conn, orig, dest, from_date, to_date, minDataPoints ) :
                          "JOIN ports dest_ports ON prices.dest_code = dest_ports.code " + 
                          "JOIN regions dest_regions ON dest_ports.parent_slug = dest_regions.slug " +
                          "WHERE orig_regions.parent_slug=(select parent_slug from regions where slug = (select parent_slug from ports where code = '" + orig + "'))" +
-                         "and dest_ports.parent_slug=(select parent_slug from regions where slug = (select parent_lug from ports where code = '" + dest + "'))" +
+                         "and dest_ports.parent_slug=(select parent_slug from regions where slug = (select parent_slug from ports where code = '" + dest + "'))" +
                          "and day >= '" + str(from_date) + "' and day <= '" + str(to_date) + "'" +
                          "GROUP BY orig_code, dest_code, day " +
                          HavingClause + " " +
@@ -177,8 +177,11 @@ def get_avgprice():
     minDataPoints = 0
 
     if 'min_data_pts' in request.args:
-        minDataPoints = request.args["min_data_pts"]
-
+        try:
+            minDataPoints = int(request.args["min_data_pts"]) if request.args["min_data_pts"] else 0
+        except ValueError:
+            return 'Wrong value provided for min_data_pts argument'
+        
     if (('orig' in request.args and 'dest' in request.args) or \
         ('orig_slug' in request.args and 'dest_slug' in request.args)) \
         and 'from' in request.args and 'to' in request.args:
@@ -212,7 +215,12 @@ def upload_price():
 
     if 'orig' in request.args and 'dest' in request.args and 'date' in request.args and 'price' in request.args:
 
-        price = float(request.args["price"])
+        try:
+            price = float(request.args["price"]) if request.args["price"] else 0
+        except ValueError:
+            print 'Wrong value provided for price argument'
+            return 'Wrong value provided for price argument'
+        
 
         if 'curr' in request.args:
            
@@ -276,6 +284,13 @@ def upload_batch():
             reader = csv.DictReader(csvfile, delimiter=',')
             for row in reader:
                 #print row["orig_code"] + ", " + row["dest_code"] + ", " + row["day"] + ", " + row["price"] 
+
+                try:
+                    price = float(row["price"]) if float(row["price"]) else 0
+                except ValueError:
+                    print 'Wrong value provided for price argument'
+                    return 'Wrong value provided for price argument'
+
                 result = doInsertPrice( myConnection, row["orig_code"], row["dest_code"], row["day"], row["price"] if xrate ==0 else str(int(int(row["price"])/xrate)) )
             print 'Uploaded ' + str(reader.line_num-1) + ' records.'
 
