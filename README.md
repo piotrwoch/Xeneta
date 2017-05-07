@@ -8,6 +8,13 @@ The WochApp's prerequisites:
 3) pip install flask_uploads
 4) pip install PyGreSQL
 
+API endpoints:
+(send a request with no parameters to see a description of available parameters)
+
+/avgprice      - checking the avg price between orig & dest ports, or ports in the same slug/region
+/upload_price  - upload an individual price
+/upload        - batch upload form
+
 Open questions:
 
 1) Re: "GET" reqs, pt.4: It was not specified if "following the
