@@ -12,7 +12,9 @@ API endpoints:
 (send a request with no parameters to see a description of available parameters)
 
 "/avgprice"      - checking the avg price between orig & dest ports, or ports in the same slug/region
+
 "/upload_price"  - upload an individual price
+
 "/upload"        - batch upload form
 
 Open questions:
