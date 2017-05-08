@@ -19,12 +19,6 @@ import pgdb
 #Set up the app
 from config import *
 
-#Initialize vars storing hard-coded DB connection info and PostgreSQL session 
-hostname = '192.168.99.100'
-username = 'postgres'
-password = ''
-database = 'postgres'
-
 engine = create_engine('postgresql://' + username + '@' + hostname + ':5432/' + database)
 Session = sessionmaker(bind=engine)
 mysession = Session()
