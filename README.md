@@ -10,7 +10,7 @@ I. The WochApp's prerequisites:
 5) pip install flask_restless
 6) pip install PyGreSQL
 
-Please set up hard-coded DB connection details in the WochApp.py.
+Please set up hard-coded DB connection details in the config.py.
 
 II. API endpoints:
 
